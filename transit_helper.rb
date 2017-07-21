@@ -1,3 +1,6 @@
+require 'net/http'
+require 'json'
+
 class TransitHelper
   HOST = 'http://svc.metrotransit.org/NexTrip'
   DIRECTIONS_MAP = {'south' => 1, 'east' => 2, 'west' => 3, 'north' => 4 }
