@@ -1,5 +1,6 @@
 require_relative '../transit_helper'
 require 'net/http'
+require 'Time'
 
 route1 = {"Description"=>"2 - Franklin Av - Riverside Av - U of M - 8th St SE", "ProviderID"=>"8", "Route"=>"2"}
 route2 = {"Description"=>"3 - U of M - Como Av - Energy Park Dr - Maryland Av", "ProviderID"=>"8", "Route"=>"3"}
@@ -56,17 +57,6 @@ describe TransitHelper do
   context "When a departure time is given as a timestamp" do
     it "we return how many minutes the timestamp is from the current time" do
       @time_now = Time.new(2017,07,19,10, 5,0, "-05:00")
-      allow(Time).to receive(:now).and_return(@time_now)
-      next_time = TransitHelper.get_next_departure_time(departures)
-      expect(next_time).to eq('26 Min')
-    end
-  end
-end
-
-describe TransitHelper do
-  context "get_available_directions method" do
-    it "returns a list of string names of directions" do
-      allow(TransitHelper)to receive(:get_request).and_return(directions)
       allow(Time).to receive(:now).and_return(@time_now)
       next_time = TransitHelper.get_next_departure_time(departures)
       expect(next_time).to eq('26 Min')
